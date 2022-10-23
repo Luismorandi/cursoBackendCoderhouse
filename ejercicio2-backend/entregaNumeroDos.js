@@ -17,8 +17,8 @@ getFile = async ()  => {
     save = async (object) => {
        const copyProducts = await this.getFile()
             const newProduct = {
-                title: object.title,
-                price: object.price,
+                name: object.name,
+                borderFile: object.borderFile,
                 id: copyProducts.length + 1
             };
 
@@ -81,7 +81,7 @@ const contenedor1 = new Contenedor('productos.JSON')
 
 
 
-contenedor1.getAll().then((res)=>console.log(res))
+contenedor1.save({name: 'pepito perez', borderFile: '425'}).then((res)=>console.log(res))
 
 
 
