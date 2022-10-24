@@ -18,12 +18,9 @@ const getData = async () => {
 }
 
 
-products.get('/', (req, res) => {
-  res.render('hello');
-});
 
 
-products.get('/products', async (req, res) => {
+products.get('/', async (req, res) => {
     const data =  JSON.parse(await getData());
 
   res.render('products', {data:data});
