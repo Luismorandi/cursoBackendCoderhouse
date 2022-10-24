@@ -1,0 +1,29 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo 3</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div>
+    <h1>Lista de productos</h1>
+
+
+   
+      <ul>
+        <%  data.forEach(element => { %>
+            <h1>Detalles de Producto <%= element.id %></h1>
+          <li> Nombre: <%= element.name %>   </li>
+          <li> Nombre: <%= element.price %>   </li>
+          <img src=<%= element.thumbnail %>  alt="">
+        <% }) %>
+      </ul>
+   
+  </div>
+
+</body>
+
+</html>
