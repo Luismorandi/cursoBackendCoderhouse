@@ -1,4 +1,5 @@
-import { Router, Request, Response } from "express";
+import checkAdmin from "../middlewares/auth";
+import { Router, Request, Response, NextFunction } from "express";
 import fs from 'fs/promises';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
@@ -14,8 +15,9 @@ const writeData = async (object: any) =>{
 	return await fs.writeFile(filePath, JSON.stringify(object, null, '\t'));
 }
 
-
-products.get('/:id', async (req:Request, res:Response) => {
+//permite listar todos los productos disponibles
+products.get('/:id',  async (req:Request, res:Response) => {
+	
 	const id = req.params.id
 	const products = JSON.parse(await getData())
 
@@ -32,8 +34,8 @@ products.get('/:id', async (req:Request, res:Response) => {
 		data: product
 	});
 });
-
-products.post('/', async (req: Request, res: Response) => {
+//incorpora productos al listado
+products.post('/', checkAdmin, async (req: Request, res: Response) => {
 	
 
 	const { name, price, thumbnail } = req.body
@@ -67,8 +69,8 @@ products.post('/', async (req: Request, res: Response) => {
 	})
 
 });
-
-products.put('/:id', async (req: Request, res:Response) => {
+//actualiza un producto del listado
+products.put('/:id', checkAdmin, async (req: Request, res:Response) => {
 	const numberId = req.params.id;
 	const {name, price, thumbnail, id} = req.body;
 
@@ -111,7 +113,8 @@ products.put('/:id', async (req: Request, res:Response) => {
 	})
 });
 
-products.delete('/:id', async (req: Request, res: Response) => {
+//Borra un producto del listado
+products.delete('/:id', checkAdmin, async (req: Request, res: Response) => {
 	const id = req.params.id;
 	const products = JSON.parse(await getData())
 
