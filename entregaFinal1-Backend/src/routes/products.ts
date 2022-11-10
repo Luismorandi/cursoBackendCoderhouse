@@ -1,7 +1,7 @@
 import { Router, Request, Response } from "express";
 import fs from 'fs/promises';
 import path from 'path';
-
+import { v4 as uuidv4 } from 'uuid';
 
 const filePath =  path.resolve(__dirname, '../../products.JSON');
 
@@ -9,6 +9,9 @@ const products = Router();
 
 const getData = async () => {
 	return await fs.readFile(filePath, 'utf-8');
+}
+const writeData = async (object: any) =>{
+	return await fs.writeFile(filePath, JSON.stringify(object, null, '\t'));
 }
 
 
@@ -30,10 +33,10 @@ products.get('/:id', async (req:Request, res:Response) => {
 	});
 });
 
-/* products.post('/', async (req, res) => {
+products.post('/', async (req: Request, res: Response) => {
 	
 
-	const { name, price, thumbnail } = req.body;
+	const { name, price, thumbnail } = req.body
 
 	if(!name || !price || !thumbnail ) {
 		return res.status(400).json({
@@ -48,7 +51,11 @@ products.get('/:id', async (req:Request, res:Response) => {
 		name,
 		price,
 		thumbnail,
-		id: products.length + 10
+		stock: 100,
+		timeStamp: new Date,
+		codigo: uuidv4(),
+		description:  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+		id: uuidv4()
 	}
 	products.push(newProduct);
 
@@ -58,14 +65,16 @@ products.get('/:id', async (req:Request, res:Response) => {
 		msg: 'Subido el nuevo producto',
 		data: newProduct
 	})
+
 });
 
-products.put('/:id', async (req, res) => {
+products.put('/:id', async (req: Request, res:Response) => {
 	const numberId = req.params.id;
 	const {name, price, thumbnail, id} = req.body;
 
 	const products = JSON.parse(await getData())
-	const index = products.findIndex(obj => obj.id == numberId);
+	const index = products.findIndex((obj: { id: string; }) => obj.id == numberId);
+	const product= products[index]
 
 	if(index < 0){
 		return res.status(404).json({
@@ -83,7 +92,12 @@ products.put('/:id', async (req, res) => {
 		name,
 		price,
 		thumbnail,
-		id: id
+		stock: product.stock,
+		timeStamp: product.timeStamp,
+		codigo: product.codigo,
+		description:  product.description,
+		id: product.id
+		
 	}
 
 	products.splice(index, 1, productUpdate);
@@ -97,12 +111,12 @@ products.put('/:id', async (req, res) => {
 	})
 });
 
-products.delete('/:id', async (req, res) => {
+products.delete('/:id', async (req: Request, res: Response) => {
 	const id = req.params.id;
 	const products = JSON.parse(await getData())
 
 	
-	const index = products.findIndex(obj => obj.id == id);
+	const index = products.findIndex((obj: { id: string; }) => obj.id == id);
 	
 
 	if(index < 0){
@@ -118,7 +132,7 @@ products.delete('/:id', async (req, res) => {
 	res.json({
 		msg: `Borrando producto con id ${id}`,
 	})
-})  */
+})  
 
 
 export default products

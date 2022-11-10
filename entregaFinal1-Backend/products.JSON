@@ -1,20 +1,12 @@
 [
 	{
-		"name": "Zapatos Nike",
-		"price": 150,
-		"thumbnail": "https://static.nike.com/a/images/f_auto,cs_srgb/w_1536,c_limit/1e6e1a3c-2916-459d-8464-c068a0ab04e7/sitio-web-oficial-de-nike.jpg",
-		"id": 1
-	},
-	{
-		"name": "Zapatos Adidas",
-		"price": 155,
-		"thumbnail": "https://assets.adidas.com/images/w_383,h_383,f_auto,q_auto,fl_lossy,c_fill,g_auto/0f5ec0c4173e4c9c99d1ae3000cbc33c_9366/zapatillas-adidas-grand-court-td-lifestyle-court-casual.jpg",
-		"id": 2
-	},
-	{
-		"name": "Zapatos Puma",
-		"price": 148,
-		"thumbnail": "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_480,h_480/global/383368/01/sv01/fnd/ARG/fmt/png",
-		"id": 3
+		"name": "Zapatos Timberland",
+		"price": "540",
+		"thumbnail": "https://static.dafiti.com.ar/p/timberland-1730-525573-1-product.jpg",
+		"stock": 100,
+		"timeStamp": "2022-11-10T01:29:02.226Z",
+		"codigo": "5b74cacd-ffdf-4718-85c2-3993c8793229",
+		"description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+		"id": "0997513b-8899-47bb-bdd5-2ddff42cdfaf"
 	}
 ]
