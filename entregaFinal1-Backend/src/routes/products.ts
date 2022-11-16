@@ -16,25 +16,37 @@ const writeData = async (object: any) =>{
 }
 
 //permite listar todos los productos disponibles
-products.get('/:id',  async (req:Request, res:Response) => {
+products.get('/:id?',  async (req:Request, res:Response) => {
 	
 	const id = req.params.id
 	const products = JSON.parse(await getData())
 
-	const index = products.findIndex((obj: { id: string; }) => obj.id == id);
-	const product = products[index]
+	if(id){
 
-	if(index < 0){
-		return res.status(404).json({
-			msg: `el producto con ${id} no existe` 
-		})
+		const index = products.findIndex((obj: { id: string; }) => obj.id == id);
+		const product = products[index]
+		
+		if(index < 0){
+			return res.status(404).json({
+				msg: `el producto con ${id} no existe` 
+			})
+		}
+		
+		res.json({
+			data: product
+		});
+	}
+	else{
+
+		
+		res.json({
+			data: products
+		});
 	}
 
-	res.json({
-		data: product
-	});
+
 });
-//incorpora productos al listado
+	//incorpora productos al listado
 products.post('/', checkAdmin, async (req: Request, res: Response) => {
 	
 
