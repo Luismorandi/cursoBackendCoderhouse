@@ -30,12 +30,7 @@ io.on("connection", (socket) => {
   socket.emit("HISTORIAL", productos);
   socket.emit("MENSAJES", mensajes);
 
-  /* Envio los mensajes al cliente que se conectó */
-  /* Escucho los mensajes enviado por el cliente y se los propago a todos */
-  // socket.on("mensaje", (data) => {
-  //   mensajes.push({ socketid: socket.id, mensaje: data });
-  //   io.sockets.emit("mensajes", mensajes);
-  // });
+
 
   app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
