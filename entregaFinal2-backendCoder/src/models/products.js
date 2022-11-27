@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { categoriesCollectionName } from "./categories.js";
 
 
 export const productsCollectionName = "product";
@@ -8,6 +9,12 @@ const productsSchema = new mongoose.Schema({
   value: { type: Number, required: true },
   thumbnail: { type: String, required: true},
   stock: { type: Number, required: true},
+  categoryId: { 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: categoriesCollectionName,
+    required: true
+
+  }
 
 });
 

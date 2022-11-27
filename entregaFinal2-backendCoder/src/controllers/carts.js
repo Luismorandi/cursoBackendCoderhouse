@@ -78,9 +78,9 @@ export const addNewProduct = async (req, res) => {
 
     const productsOfCart = cart.products;
 
-    const { title, value, thumbnail, stock } = req.body;
+    const { title, value, thumbnail, stock, categoryId } = req.body;
 
-    if (!title || !value || !thumbnail || !stock) {
+    if (!title || !value || !thumbnail || !stock || !categoryId) {
       return res.status(400).json({
         error: "Falta un dato del producto",
       });
@@ -91,6 +91,7 @@ export const addNewProduct = async (req, res) => {
       value,
       thumbnail,
       stock,
+	  categoryId
     };
 
     productsOfCart.push(newProduct);

@@ -53,8 +53,8 @@ export const getProductById = async (req, res) => {
  	//incorpora productos al listado
 export const createProduct = async (req, res) => {
 	try{
-		const { title, value, thumbnail, stock } = req.body
-		if(!title || !value || !thumbnail || !stock) {
+		const { title, value, thumbnail, stock, categoryId } = req.body
+		if(!title || !value || !thumbnail || !stock || !categoryId) {
 			return res.status(400).json({
 				error: "Falta un dato"
 			})
@@ -64,6 +64,7 @@ export const createProduct = async (req, res) => {
 			value,
 			thumbnail,
 			stock,
+			categoryId
 		})
 		res.json({
 			msg: 'Subido el nuevo producto',
@@ -85,7 +86,8 @@ try{
 		title,
 		value,
 		thumbnail,
-		stock
+		stock,
+		categoryId
 	} = req.body;
 	
 	const product = await ProductsModel.findById(numberId)
@@ -96,7 +98,7 @@ try{
 			}
 			
 			
-			if (!title || !value || !thumbnail || !stock) {
+			if (!title || !value || !thumbnail || !stock || !categoryId) {
 				return res.status(400).json({
 					error: "Falta un dato"
 				})
@@ -107,6 +109,7 @@ try{
 				value,
 				thumbnail,
 				stock: product.stock,
+				categoryId
 				
 				
 			}, {new: true})
@@ -152,23 +155,3 @@ export const deleteProduct = async (req, res) => {
 
 export default products
 
-/* export const getAllProducts = async (req:Request,res: Response) => {
-
-    try{
-        const products = await ProductsModel.find();
-        res.json({
-            data: products,
-        })
-
-    }catch (err){
-        res.status(500).json({
-            error: err.message
-        })
-    }
-
-}
-
-export const getProductById = async (req, res) =>{
-
-
-} */
