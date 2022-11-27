@@ -1,8 +1,7 @@
 
 import { ProductsModel } from '../models/products.js'
 import { Router } from "express";
-import checkAdmin from '../middlewares/auth.js';
-import { v4 as uuidv4 } from 'uuid';
+
 
 
 const products = Router();

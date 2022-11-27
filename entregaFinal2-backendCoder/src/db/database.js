@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const connectionString = 'mongodb://localhost:27017/ecommerce'
+const connectionString = 'mongodb+srv://newiser:holahola@test-coderhouse.ovwadqn.mongodb.net/?retryWrites=true&w=majority'
 
 export const initMongoDB = async () => {
 
