@@ -41,12 +41,12 @@ const login = async (req, username, password, done) => {
   export const signUpFunc = new LocalStrategy(strategyOptions, signup);
   
   passport.serializeUser((user, done)=>{
-	console.log('ejecuta serialize');
+
 	done(null, user._id);
   });
   
   passport.deserializeUser( async(userId, done)=>{
-	console.log('ejecuta deserialize');
+
 	const user = await UserModel.findById(userId);
 	return done(null, user);
   });
