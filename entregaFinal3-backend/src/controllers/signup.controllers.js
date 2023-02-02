@@ -8,7 +8,7 @@ getSignup = async (req, res) => {
   }
 
 postSignup = async (req, res) => {
-   return res.render("home")
+   return res.render("login")
   }
 
 }

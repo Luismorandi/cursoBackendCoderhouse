@@ -1,6 +1,11 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from 'passport-local';
+import Carts from "../controllers/carts.controllers.js";
+import { CartsModel } from "../models/carts.js";
 import { UserModel } from '../models/models.js'
+import { sendMail } from "./nodemailer.js";
+
+
 
 const initAuth = () => {
 	passport.serializeUser((user, done) => {
@@ -18,16 +23,22 @@ const initAuth = () => {
 			adress,
 			age,
 			cellphoneNumber,
-			avatar = "hola" } = req.body
+			avatar = "hola",
+		carts= [] } = req.body
 		try {
 			const user = await UserModel.find({ username: username })
 			if (user.length === 0) {
 
-				const newUser = await UserModel({ username, password, name, adress, age, cellphoneNumber, avatar })
+				const newUser = await UserModel({ username, password, name, adress, age, cellphoneNumber, avatar, carts })
 
 				newUser.password = await newUser.encryptPassword(password)
-				console.log(newUser.password)
+			const mailOptions={
+				to:'luismorandit@gmail.com',
+				subject: 'Nuevo usuario registrado',
+				text: `El usuario con datos nombre ${newUser.name} ha sido registrado con el username ${newUser.username}.`
+			}
 				await newUser.save()
+				await sendMail(mailOptions)
 				return done(null, newUser);
 			} else {
 				console.log('Ya estas registrado')
@@ -39,15 +50,33 @@ const initAuth = () => {
 
 		}
 	}
+	
 
 	const login = async (req, username, password, done) => {
 
+		
 		const user = await UserModel.findOne({ username });
 		if (!user) return done(null, false);
 		const match = await user.matchPassword(password);
 		match ? done(null, user) : done(null, false)
 
+		const carts = user.carts
+		const cartsActive = carts.filter((cart) => cart.isActive === true)
+		const products= [];
+	
+		if(carts.length === 0 || !cartsActive ) {
+			user.carts =  await CartsModel.create({
+				products,
+				userOwner: user._id,
+				isActive: true
 
+			  });
+
+			  
+			await  user.save()
+		}
+		
+	
 
 	};
 	const strategyOptions = {
