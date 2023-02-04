@@ -5,6 +5,9 @@ import { CartsModel } from "../models/carts.js";
 import { UserModel } from '../models/models.js'
 import { sendMail } from "./nodemailer.js";
 
+import {Mails} from "../utils/mails.js";
+
+
 
 
 const initAuth = () => {
@@ -23,22 +26,16 @@ const initAuth = () => {
 			adress,
 			age,
 			cellphoneNumber,
-			avatar = "hola",
+			avatar = req.file?.originalname,
 		carts= [] } = req.body
 		try {
 			const user = await UserModel.find({ username: username })
 			if (user.length === 0) {
-
 				const newUser = await UserModel({ username, password, name, adress, age, cellphoneNumber, avatar, carts })
-
 				newUser.password = await newUser.encryptPassword(password)
-			const mailNewUser={
-				to:'luismorandit@gmail.com',
-				subject: 'Nuevo usuario registrado',
-				text: `El usuario con datos nombre ${newUser.name} ha sido registrado con el username ${newUser.username}.`
-			}
+				const mail=  new Mails(newUser)
 				await newUser.save()
-				await sendMail(mailNewUser)
+				await sendMail(mail.mailNewUser(newUser, name, carts))
 				return done(null, newUser);
 			} else {
 				console.log('Ya estas registrado')
