@@ -4,8 +4,14 @@ import passport from "passport";
 import dotenv from 'dotenv'
 import session from 'express-session';
 import auth from './auth.js'
-dotenv.config()
+import path from 'path'
+import { fileURLToPath } from 'url';
+import multer from 'multer'
 
+dotenv.config()
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
 auth()
 const app = express();
 
@@ -22,6 +28,16 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.set('view engine', 'ejs')
+const storage = multer.diskStorage({
+  destination:'public/assests',
+  filename: (req, file, cb)=>{
+    cb(null,file.originalname)
+  }
+})
+app.use(multer({
+  storage,
+  dest: 'public/assests'
+}).single('image'))
 app.use('/', mainRouter)
 app.use(express.urlencoded({ extended: true }));
 

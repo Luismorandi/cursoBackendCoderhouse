@@ -3,6 +3,7 @@ import Server from './services/server.js';
 import logger from "./logger/logger.js";
 import {initMongoDB}  from './db/database.js'
 import dotenv from 'dotenv'
+import winston from 'winston'
 dotenv.config()
 
 const PORT =process.env.PORT || 8080
