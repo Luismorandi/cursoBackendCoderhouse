@@ -32,13 +32,13 @@ const initAuth = () => {
 				const newUser = await UserModel({ username, password, name, adress, age, cellphoneNumber, avatar, carts })
 
 				newUser.password = await newUser.encryptPassword(password)
-			const mailOptions={
+			const mailNewUser={
 				to:'luismorandit@gmail.com',
 				subject: 'Nuevo usuario registrado',
 				text: `El usuario con datos nombre ${newUser.name} ha sido registrado con el username ${newUser.username}.`
 			}
 				await newUser.save()
-				await sendMail(mailOptions)
+				await sendMail(mailNewUser)
 				return done(null, newUser);
 			} else {
 				console.log('Ya estas registrado')
