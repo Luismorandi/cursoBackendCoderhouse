@@ -19,8 +19,8 @@ export const getAllCarts = async (req, res) => {
 
 export const getCartById = async (req, res) => {
   try {
-    const id = req.params.id;
-    const carts = await CartsModel.find();
+    const carts = req.user.carts
+    const cartActive = await CartsModel.find();
 
     if (id) {
       const index = carts.findIndex((obj) => obj.id == id);
@@ -42,6 +42,7 @@ export const getCartById = async (req, res) => {
     });
   }
 };
+
 //permite crear un carrito y devuelve su id
 export const createCart = async (req, res) => {
   try {
