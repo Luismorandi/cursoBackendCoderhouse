@@ -40,6 +40,15 @@ async getById(id){
     }
 }
 
+async getByCategory(id){
+    try{
+        const doc = await this.collection.find({categoryId: id})
+        return doc
+    }catch(error){
+        console.log('error getById mongoose',error)
+    }
+}
+
 async addProduct(product){
 
     try{

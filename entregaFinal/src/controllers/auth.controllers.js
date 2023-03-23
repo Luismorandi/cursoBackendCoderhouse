@@ -6,7 +6,7 @@ class Auth {
     loginAutheticate = async (req, res, next) => {
         const authFunc = passport.authenticate('local-login', {
             successRedirect: '/home',
-            failureRedirect: '/login',
+            failureRedirect: '/',
             passReqToCallback: true
         })
 
@@ -16,7 +16,7 @@ class Auth {
     signupAuthenticate = async (req, res, next) => {
         const authFunc = passport.authenticate('local-signup', {
             successRedirect: '/home',
-            failureRedirect: '/login',
+            failureRedirect: '/',
             passReqToCallback: true
 
         })

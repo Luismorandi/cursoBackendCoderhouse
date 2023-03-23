@@ -14,6 +14,11 @@ export const getProductById = async (id) => {
     return product
 }
 
+export const getProductByCategory = async (id) => {
+    const product = await productsCollection.getByCategory(id)
+    return product
+}
+
 export const addProduct = async (product) => {
     
     const addProduct = await productsCollection.addProduct(product);

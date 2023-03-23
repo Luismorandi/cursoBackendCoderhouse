@@ -27,18 +27,24 @@ const initAuth = () => {
 			age,
 			cellphoneNumber,
 			avatar = req.file?.originalname,
-			carts = [] } = req.body
+			carts = [], 
+			repeatPassword  } = req.body
+
+			
 		try {
+			
 			const user = await UserModel.find({ username: username })
-			if (user.length === 0) {
+			if (user.length === 0 && repeatPassword === password) {
 				const newUser = await UserModel({ username, password, name, adress, age, cellphoneNumber, avatar, carts })
 				newUser.password = await newUser.encryptPassword(password)
 				const mail = new Mails(newUser)
 				await newUser.save()
 				await sendMail(mail.mailNewUser(newUser, name, carts))
 				return done(null, newUser);
-			} else {
-				console.log('Ya estas registrado')
+			} else if( repeatPassword !== password){
+				return done("Las constraseñas ingresadas tienen que ser iguales")
+			} else{
+				return done("Ya estas registrado")
 			}
 
 		} catch (err) {
@@ -91,7 +97,7 @@ export const authMiddl = (req, res, next) => {
 	if (req.isAuthenticated()) {
 		return next()
 	}
-	res.redirect('/login')
+	res.redirect('/')
 
 }
 

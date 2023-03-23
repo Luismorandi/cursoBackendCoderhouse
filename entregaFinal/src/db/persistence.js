@@ -13,6 +13,10 @@ async getAll(){
 async getById(id){
     return await this.collection.getById(id)
 }
+
+async getByCategory(categoryId){
+    return await this.collection.getByCategory(categoryId)
+}
 async addProduct(product){
     return await this.collection.addProduct(product)
 }

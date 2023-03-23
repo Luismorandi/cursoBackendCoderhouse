@@ -1,5 +1,5 @@
 import { ProductsModel } from "../db/mongoDB/models/products.js";
-import { getAllProducts, getProductById, addProduct, updateProduct } from "../services/products.services.js";
+import { getAllProducts, getProductById, addProduct, updateProduct, getProductByCategory } from "../services/products.services.js";
 
 class Products {
 
@@ -26,8 +26,26 @@ class Products {
         try {
             const productId=  req.params.id
             const product = await getProductById(productId)
+            const response = product ? {product} : {alert: 
+                "El producto no existe"}
+            res.json(response)
+        } catch (err) {
+            res.status(500).json({
+                error: err
+            })
+        }
+
+
+
+    }
+
+    
+    getProductByCategory= async (req, res) => {
+        try {
+            const categoryId=  req.params.id
+            const products = await getProductByCategory(categoryId)
             res.json({
-                product
+                products
             })
         } catch (err) {
             res.status(500).json({

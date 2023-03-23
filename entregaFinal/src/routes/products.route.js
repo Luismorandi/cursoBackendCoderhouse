@@ -8,6 +8,7 @@ const productsController = new Products
 
 products.get('/', authMiddl, productsController.getAllProducts)
 products.get("/:id", productsController.getProductById);
+products.get("/category/:categoryId", productsController.getProductByCategory);
 products.post("/", productsController.addProduct);
 products.put("/:productId", productsController.updateProduct);
 

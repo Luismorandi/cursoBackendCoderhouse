@@ -3,48 +3,125 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
     <title>INVENTARIO Y CHAT</title>
   </head>
   <body>
-    <div class="container mx-auto bg-light p-4 rounded border border-secondary my-4">
+    <div
+      class="container mx-auto bg-light p-4 rounded border border-secondary my-4"
+    >
       <span id="formulario-registro"></span>
       <span id="registro">
         <h2 class="text-center mb-3">FORMULARIO DE REGISTRO</h2>
         <form action="/signup" method="POST" enctype="multipart/form-data">
           <div class="mb-2 row mx-auto">
             <div class="col-sm-5 col-md-5 mx-0">
-              <input type="text" class="form-control" name="username" placeholder="Usuario" required />
+              <input
+                type="text"
+                class="form-control"
+                name="username"
+                placeholder="Usuario"
+                required
+              />
             </div>
             <div class="col-sm-5 col-md-5 mx-0">
-              <input type="password" class="form-control" name="password" placeholder="Contraseña" required />
+              <input
+                id="password"
+                type="password"
+                class="form-control"
+                name="password"
+                placeholder="Contraseña"
+                required
+              />
             </div>
             <div class="col-sm-5 col-md-5 mx-0">
-              <input type="text" class="form-control" name="name" placeholder="Nombre" required />
+              <input
+                id="repeatPassword"
+                type="password"
+                class="form-control"
+                name="repeatPassword"
+                placeholder="Repite la contraseña"
+                required
+              />
             </div>
             <div class="col-sm-5 col-md-5 mx-0">
-              <input type="text" class="form-control" name="adress" placeholder="Direcciòn" required />
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                placeholder="Nombre"
+                required
+              />
             </div>
             <div class="col-sm-5 col-md-5 mx-0">
-              <input type="number" class="form-control" name="age" placeholder="Edad" required />
+              <input
+                type="text"
+                class="form-control"
+                name="adress"
+                placeholder="Direcciòn"
+                required
+              />
             </div>
             <div class="col-sm-5 col-md-5 mx-0">
-              <input type="number" class="form-control" name="cellphoneNumber" placeholder="Celular" required />
+              <input
+                type="number"
+                class="form-control"
+                name="age"
+                placeholder="Edad"
+                required
+              />
             </div>
             <div class="col-sm-5 col-md-5 mx-0">
-              <input type="file" class="form-control" name="image" placeholder="Foto" required />
+              <input
+                type="number"
+                class="form-control"
+                name="cellphoneNumber"
+                placeholder="Celular"
+                required
+              />
             </div>
-          
-            <button class="btn btn-success text-center col-sm-2 col-md-2 mx-0" type="submit">Registrarse</button>
+            <div class="col-sm-5 col-md-5 mx-0">
+              <input
+                type="file"
+                class="form-control"
+                name="image"
+                placeholder="Foto"
+                required
+              />
+            </div>
+
+            <button
+              class="btn btn-success text-center col-sm-2 col-md-2 mx-0"
+              type="submit"
+            >
+              Registrarse
+            </button>
           </div>
         </form>
-      
+
         <div class="d-flex justify-content-end">
-          <a href="/login" type="button" class="btn btn-primary text-center col-sm-2 col-md-2">Ir a login</a>
+          <a
+            href="/"
+            type="button"
+            class="btn btn-primary text-center col-sm-2 col-md-2"
+            >Ir a login</a
+          >
         </div>
       </span>
     </div>
-
+    <script>
+      let validatePassword = false;
+      let password = document.getElementById("password").value;
+      let repeatPassword = document.getElementById("repeatPassword").value;
+      if (password === repeatPassword) {
+        validatePassword = true;
+      }
+    </script>
     <!-- LINK HBS -->
   </body>
 </html>
