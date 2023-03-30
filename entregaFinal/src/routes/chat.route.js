@@ -7,5 +7,6 @@ const chatController = new Chat
 
 
 chat.get('/', authMiddl, chatController.goToChat)
+chat.get('/:email', authMiddl, chatController.getMessagesByEmail)
 
 export default chat

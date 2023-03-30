@@ -10,21 +10,15 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/style.css" />
-    <title>ChatCord App</title>
+    <title>Centro de servicios</title>
   </head>
   <body>
     <div class="chat-container">
       <header class="chat-header">
-        <h1><i class="fas fa-smile"></i> ChatCord</h1>
-        <a id="leave-btn" href="index.html" class="btn">Leave Room</a>
+        <h1><i class="fas fa-smile"></i>Centro de servicios</h1>
+        <a id="leave-btn" href="/home" class="btn">Ir a la home</a>
       </header>
       <main class="chat-main">
-        <div class="chat-sidebar">
-          <h3><i class="fas fa-comments"></i> Room Name:</h3>
-          <h2 id="room-name"></h2>
-          <h3><i class="fas fa-users"></i> Users</h3>
-          <ul id="users"></ul>
-        </div>
         <div class="chat-messages"></div>
       </main>
       <div class="chat-form-container">
@@ -47,6 +41,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/chat.js"></script>
   </body>
 </html>

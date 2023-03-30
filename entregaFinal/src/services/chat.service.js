@@ -4,39 +4,29 @@ import {Server as WebSocketServer} from 'socket.io'
 import { formatMessage } from '../../utils/messages.js';
 import { userJoin, getCurrentUser, userLeave, getRoomUsers} from '../../utils/users.js';
 import {server} from './server.js'
+import {MessagesModel} from '../db/mongoDB/models/messages.js'
 dotenv.config()
 
-const botName= 'boti'
- export const initChat = () => { 
+
+export const initChat = (req) => { 
 const io = new  WebSocketServer(server)
-io.on('connection', (socket) =>{
-    socket.on('joinRoom', ({username, room}) => {
-        const user = userJoin(socket.id,username, room)
-socket.join(user.room)
-    
-    socket.emit('message', formatMessage(botName, 'Welcome to chat'))
-    socket.broadcast.to(user.room).emit('message', formatMessage(botName, `${user.username} has joined the chat`))
-    io.to(user.room).emit('roomUsers', {
-        room: user.room,
-        users:getRoomUsers(user.room)
-    })
+const botName= 'Helpi'
+ io.on('connection', (socket) =>{
+    socket.on('joinRoom', () => {
+    socket.emit('message', formatMessage(botName, 'Bienvenido al centro de ayuda'))
+
 })
-    socket.on('chatMessage', msg=>{
-        const user = getCurrentUser(socket.id)
-       io.to(user.room).emit('message',formatMessage(user.username,msg))
+    socket.on('chatMessage', async msg=>{
+
+       io.emit('message',formatMessage(`${req.user.username} `,msg))
+       await MessagesModel.create({
+        message: msg,
+        userName: req.user.username,
+        date: new Date(),
+        userId: req.user._id
+       })
+
+  
     })
 
-    socket.on('disconnect', ()=> {
-        const user = userLeave(socket.id)
-        console.log(user)
-
-        if(user){
-            io.to(user.room).emit('message',formatMessage(botName, `${user.username} has left the chat`))
-
-            io.to(user.room).emit('roomUsers', {
-                room: user.room,
-                users: getRoomUsers(user.room)
-            })
-        }
-    })
 }) }

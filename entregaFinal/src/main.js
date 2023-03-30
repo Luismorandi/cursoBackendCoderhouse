@@ -14,7 +14,7 @@ const PORT =process.env.PORT || 8080
 const init = async () => {
     await initMongoDB();
     server.listen(PORT, ()=> console.log(`Servidor escuchando en puerto ${PORT} `))
-    initChat()
+
     Server.on('error', (error) => logger.error(`Error en servidor ${PORT}`));
    
 }

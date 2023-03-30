@@ -48,15 +48,18 @@ class Carts {
         await CartsModel.create({
           products: [],
           userOwner: userId,
-          isActive: true
+          isActive: true,
+          email: req.user.username,
+          date: new Date(),
+          deliveryAdress: req.user.adress
 
         });
       }
 
       const cartActive2 = await getCartActive(userId, true)
-      console.log(cartActive2)
+   
       const cartActiveId = cartActive2[0]._id.toString()
-      console.log(cartActiveId)
+
       const cart = await getCartById(cartActiveId);
 
       if (!cart) {
