@@ -13,7 +13,7 @@ const io = new  WebSocketServer(server)
 const botName= 'Helpi'
  io.on('connection', (socket) =>{
     socket.on('joinRoom', () => {
-    socket.emit('message', formatMessage(botName, 'Bienvenido al centro de ayuda'))
+    socket.emit('message', formatMessage(botName, 'Bienvenido al centro de ayuda. Por favor deja tu pregunta y en algun momento responderemos.'))
 
 })
     socket.on('chatMessage', async msg=>{

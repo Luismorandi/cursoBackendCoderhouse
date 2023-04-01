@@ -30,7 +30,7 @@ export class Mails {
         to:'luismorandit@gmail.com',
         subject: 'Nueva compra',
         text: `El usuario  ${username}. ha realizado una compra con los siguientes articulos: 
-        ${cart.products.map(product=>{return " " + product.title + " con precio " + product.value + "$"})}
+        ${cart.products.map(product=>{return "- "+ " " + product.title + " con precio " + product.value + "$" })}
         `
     }
       }
@@ -42,7 +42,7 @@ export class Mails {
             to:'luismorandit@gmail.com',
             subject: 'Nueva compra',
             text: `Gracias por tu compra ${username}. Has realizado una compra con los siguientes articulos: 
-            ${cart.products.map(product=>{return " " + product.title + " con precio " + product.value + "$"})}
+            ${cart.products.map(product=>{return "- "+ " " + product.title + " con precio " + product.value + "$" + "<br>" })}
             `
         }
       }

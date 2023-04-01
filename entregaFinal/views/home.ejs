@@ -3,55 +3,233 @@
   <head>
     <link
       rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
     />
+
+    <style>
+      .navbar {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        letter-spacing: 0.1rem;
+      }
+
+      .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: bold;
+        letter-spacing: 0.2rem;
+      }
+
+      .nav-link {
+        color: #fff !important;
+        font-size: 1.1rem;
+        margin-right: 1rem;
+        text-transform: uppercase;
+      }
+
+      .nav-link:hover {
+        color: #f8f9fa !important;
+      }
+
+      .navbar-toggler {
+        border: none;
+      }
+
+      .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+      }
+      .card {
+        border: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .card-img-top {
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+
+      .card-text {
+        font-size: 1.125rem;
+        color: #777;
+      }
+
+      .btn-primary {
+        background-color: #ff9900;
+        border-color: #ff9900;
+        font-weight: bold;
+      }
+
+      .btn-primary:hover {
+        background-color: #f29400;
+        border-color: #f29400;
+      }
+
+      .si {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      /* Cart section */
+
+      #cart {
+        background-color: #f3f3f3;
+        padding: 80px 0;
+      }
+
+      #cart .card {
+        border: none;
+      }
+
+      #cart .card-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #333;
+      }
+
+      #cart hr {
+        border-top: 1px solid #ddd;
+      }
+
+      #cart img {
+        max-width: 100%;
+      }
+
+      #cart .p-2 {
+        flex-basis: 33.33%;
+        text-align: center;
+      }
+
+      #cart .form-group label {
+        font-weight: bold;
+      }
+
+      #cart button {
+        font-size: 1rem;
+        text-transform: uppercase;
+      }
+
+      #cart .btn-secondary {
+        background-color: #f0c14b;
+        color: #232f3e;
+        border-color: #a88734;
+      }
+
+      #cart .btn-secondary:hover {
+        background-color: #f6d167;
+        color: #232f3e;
+        border-color: #a88734;
+      }
+
+      #cart .btn-primary {
+        background-color: #f0c14b;
+        color: #fff;
+        border-color: #a88734;
+      }
+
+      #cart .btn-primary:hover {
+        background-color: #f6d167;
+        color: #fff;
+        border-color: #a88734;
+      }
+
+      @media (max-width: 991.98px) {
+        .navbar-nav {
+          margin-top: 1rem;
+        }
+
+        .nav-item {
+          display: block;
+          text-align: center;
+        }
+
+        .nav-link {
+          padding: 0.5rem 1rem;
+          font-size: 1.1rem;
+          margin-right: 0;
+          text-transform: uppercase;
+        }
+      }
+    </style>
   </head>
   <body>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Ecommerce Website</a>
-        </div>
-
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">Products</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact Us</a></li>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Mi Tienda</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav ml-auto">
+         
+          <li class="nav-item ">
+            <a href="/chat" method="POST" class="btn btn-primary">Chat Ayuda</a>
+          </li>
+          <li class="nav-item ml-2">
+            <a href="/logout" method="POST" class="btn btn-danger"
+              >Cerrar sesión</a
+            >
+          </li>
         </ul>
       </div>
     </nav>
     <div class="container">
-      <div class="jumbotron">
-        <h1>Welcome to our Ecommerce Website!</h1>
-        <p>We offer a wide range of products at great prices.</p>
-        <p><a href="/logout" method="POST" class="btn btn-danger">LOGOUT</a></p>
-        <p>
-          <a href="/chat" method="POST" class="btn btn-danger"
-            >Atención al cliente</a
-          >
-        </p>
-      </div>
-      <div class="row" id="products"></div>
-      <div class="row">
-        <h2 class="text-center">Productos cargados</h2>
+      <section id="products" class="si mt-5"></section>
 
-        <table class="table table-dark table-striped mx-auto p-1">
-          <thead>
-            <tr class="text-center text-warning">
-              <th style="width: 33%">NOMBRE</th>
-              <th style="width: 33%">PRECIO</th>
-              <th style="width: 33%">FOTO</th>
-            </tr>
-          </thead>
-          <tbody id="cart"></tbody>
-        </table>
+    <section id="cart">
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-body" id="cartHome">
+                <h5 class="card-title">Tu carrito</h5>
+                <hr />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Resumen de compra</h5>
+                <hr />
+                <h6 id="totalOfCart"></h6>
+                <p>
+                  <a
+                    href="/checkout"
+                    method="POST"
+                    class="btn btn-primary btn-block mt-3"
+                    >COMPRAR</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <p>
-        <a href="/checkout" method="POST" class="btn btn-danger">COMPRAR</a>
-      </p>
-    </div>
     <script src="/js/home.js"></script>
   </body>
 </html>

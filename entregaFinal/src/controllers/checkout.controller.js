@@ -24,7 +24,7 @@ class Checkout {
       const mailCheckoutToUser = mails.mailCheckoutToUser(username, cart[0])
       const orderNumber = (await OrdersModel.find()).length
 
-      console.log(req.user.adress )
+
     
       
         await OrdersModel.create({
@@ -41,7 +41,7 @@ class Checkout {
 
       await sendMail(mailCheckoutToAdmin)
       await sendMail(mailCheckoutToUser)
-      return res.render("home")
+      return res.render("checkout")
     } catch (err) {
       res.status(500).json({
         error: 'hoala,',

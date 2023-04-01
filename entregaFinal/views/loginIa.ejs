@@ -76,14 +76,13 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-12">
-          <form class="login-form" action="/" method="POST">
+          <form class="login-form">
             <h1>Iniciar sesión</h1>
             <div class="form-group">
               <label for="email" class="form-label">Correo electrónico:</label>
               <input
                 type="email"
                 class="form-control"
-                name="username"
                 id="email"
                 placeholder="Ingrese su correo electrónico"
                 required
@@ -95,7 +94,6 @@
                 type="password"
                 class="form-control"
                 id="password"
-                name="password"
                 placeholder="Ingrese su contraseña"
                 required
               />
@@ -104,8 +102,7 @@
               Iniciar sesión
             </button>
             <div class="login-link">
-              ¿No tienes cuenta?
-              <a href="/signup" type="button">Regístrate aquí</a>
+              ¿No tienes cuenta? <a href="#">Regístrate aquí</a>
             </div>
           </form>
         </div>

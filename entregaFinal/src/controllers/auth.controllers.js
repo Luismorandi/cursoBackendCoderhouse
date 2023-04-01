@@ -14,13 +14,13 @@ class Auth {
     }
 
     signupAuthenticate = async (req, res, next) => {
+       
         const authFunc = passport.authenticate('local-signup', {
             successRedirect: '/home',
             failureRedirect: '/',
             passReqToCallback: true
 
         })
-
         authFunc(req, res, next);
     }
 

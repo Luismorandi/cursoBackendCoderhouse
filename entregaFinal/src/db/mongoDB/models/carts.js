@@ -9,7 +9,8 @@ export const cartsSchema = new mongoose.Schema({
   isActive: {type: Boolean, required: true},
   email: {type: String, required: false},
   date: {type: Date, required: false},
-  adress: {type: String, required: false}
+  adress: {type: String, required: false},
+  total:  {type: Number, required: false},
 
 });
 

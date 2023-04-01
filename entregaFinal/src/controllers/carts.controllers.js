@@ -51,7 +51,8 @@ class Carts {
           isActive: true,
           email: req.user.username,
           date: new Date(),
-          deliveryAdress: req.user.adress
+          adress: req.user.adress,
+          total: 0
 
         });
       }
@@ -71,10 +72,17 @@ class Carts {
       const newProduct = await getProductById(productId)
 
       const productsOfCart = cart.products
+ 
       productsOfCart.push(newProduct);
+      const valueOfCart =productsOfCart.map((product) => product.value);
+      const totalOfCart= cart.total
+      const value2OfCart = valueOfCart.reduce(
+        (accumulator, currentValue) => accumulator + currentValue,
+        totalOfCart
+      );
       const cartUpdate = await CartsModel.findByIdAndUpdate(
         cartActiveId,
-        { _id: cart._id, products: productsOfCart },
+        { _id: cart._id, products: productsOfCart, total:value2OfCart },
         { new: true }
       );
 
@@ -105,10 +113,7 @@ class Carts {
         { _id: cart._id, products: productsOfCart },
         { new: true }
       );
-      res.json({
-        msg: `Producto elminado con id ${idProduct} del carrito con id ${numberId}`,
-        data: cart,
-      });
+      res.render("home")
     } catch (err) {
       res.status(500).json({
         error: err.message,
