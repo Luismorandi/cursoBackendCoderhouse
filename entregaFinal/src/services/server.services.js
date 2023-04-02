@@ -4,17 +4,11 @@ import passport from "passport";
 import dotenv from 'dotenv'
 import session from 'express-session';
 import auth from './auth.service.js'
-import path from 'path'
-import { fileURLToPath } from 'url';
 import multer from 'multer'
-import {graphqlHTTP} from 'express-graphql'
-import { graphqlRoot, graphqlSchema } from './graphql.services.js';
 import http from 'http'
 
 dotenv.config()
-const __filename = fileURLToPath(import.meta.url);
 
-const __dirname = path.dirname(__filename);
 auth()
 const app = express();
 export const server = http.createServer(app)
@@ -43,12 +37,7 @@ app.use(multer({
 }).single('image'))
 
 
-app.use('/graphql', graphqlHTTP({
-  schema:  graphqlSchema,
-  rootValue: graphqlRoot,
-  graphiql: true
 
-}))
 app.use('/', mainRouter)
 app.use(express.urlencoded({ extended: true }));
 

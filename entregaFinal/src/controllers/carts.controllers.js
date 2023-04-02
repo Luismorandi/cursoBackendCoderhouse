@@ -32,8 +32,9 @@ class Carts {
 
       res.json(cartActive);
     } catch (err) {
+      console.log(err);
       res.status(500).json({
-        error: 'hoala,',
+        error: 'Hubo un error en encontrar el carrito activo del usuario',
       });
     }
   };

@@ -2,7 +2,7 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from 'passport-local';
 import Carts from "../controllers/carts.controllers.js";
 import { CartsModel } from "../db/mongoDB/models/carts.js";
-import { UserModel } from '../db/mongoDB/models/models.js'
+import { UserModel } from '../db/mongoDB/models/users.js'
 import { sendMail } from "./nodemailer.service.js";
 
 import { Mails } from "../utils/mails.js";

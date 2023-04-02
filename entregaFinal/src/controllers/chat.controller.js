@@ -1,11 +1,7 @@
-import { request } from 'http';
-import path from 'path'
-import { fileURLToPath } from 'url';
+
 import {MessagesModel} from '../db/mongoDB/models/messages.js'
 import {initChat } from '../services/chat.service.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 class Chat {
 

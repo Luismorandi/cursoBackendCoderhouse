@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config()
+const mailAdmin =  process.env.ADMIN_MAIL
 
 export class Mails {
 
@@ -16,9 +17,9 @@ export class Mails {
      mailNewUser= (newUser)=> {
         return {
 
-            to:'luismorandit@gmail.com',
+            to:`${mailAdmin}`,
             subject: 'Nuevo usuario registrado',
-            text: `El usuario el nombre ${newUser.name} ha sido registrado con el username ${newUser.username}.`
+            text: `El usuario con nombre ${newUser.name} ha sido registrado con el username ${newUser.username}.`
         }
     }
 
@@ -27,7 +28,7 @@ export class Mails {
     return {
 
         
-        to:'luismorandit@gmail.com',
+        to:`${mailAdmin}`,
         subject: 'Nueva compra',
         text: `El usuario  ${username}. ha realizado una compra con los siguientes articulos: 
         ${cart.products.map(product=>{return "- "+ " " + product.title + " con precio " + product.value + "$" })}
@@ -39,10 +40,10 @@ export class Mails {
 
         return {
 
-            to:'luismorandit@gmail.com',
+            to:`${username}`,
             subject: 'Nueva compra',
             text: `Gracias por tu compra ${username}. Has realizado una compra con los siguientes articulos: 
-            ${cart.products.map(product=>{return "- "+ " " + product.title + " con precio " + product.value + "$" + "<br>" })}
+            ${cart.products.map(product=>{return "- "+ " " + product.title + " con precio " + product.value + "$" })}
             `
         }
       }

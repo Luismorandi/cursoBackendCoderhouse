@@ -2,7 +2,6 @@
 import { CartsModel } from "../db/mongoDB/models/carts.js"
 import { OrdersModel } from "../db/mongoDB/models/orders.js"
 import { sendMail } from "../services/nodemailer.service.js"
-import { sendSms } from "../services/twilio.service.js"
 import { Mails } from "../utils/mails.js"
 import { getCartActive } from "../services/carts.services.js"
 

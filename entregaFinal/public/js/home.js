@@ -1,9 +1,7 @@
 
 
-const PORT = 8080
-
-let productsURL = `http://localhost:${PORT}/products`
-let productsCartURL = `http://localhost:${PORT}/carts/cart-active`
+let productsURL = `/products`
+let productsCartURL = `/carts/cart-active`
 
 
 
@@ -19,7 +17,7 @@ const mostrarData=(data)=>{
           <div class="card-body">
             <h4 class="card-title">${data[i].title}</h4>
             <p class="card-text">${data[i].value}</p>
-            <p><a href="http://localhost:${PORT}/carts/${data[i]._id}" class="btn btn-primary">Comprar</a></p>
+            <p><a href="/carts/${data[i]._id}" class="btn btn-primary">Comprar</a></p>
           </div>
         </div>
       </div>`
